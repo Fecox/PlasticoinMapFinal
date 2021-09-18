@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plasticoin Map</title>
+   <link rel="stylesheet" href="/css/front.css">
+</head>
+<body id="body">
+    <div class="filter__menu" id="menu_filter">
+        <div class="title__menu"> 
+            FILTROS
+        </div>
+        <div class="filtro">
+            <div>
+                <label class="container">
+                    <span class="empresa">filtro empresa</span>
+                    <input type="checkbox" id="empresas" checked>
+                    <span class="checkmark"></span>
+                </label>
+            </div> 
+            <div>
+                <label class="container">
+                    <span class="beneficio">filtro beneficio</span>
+                    <input type="checkbox" id="beneficio" checked>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div>
+                <label class="container">
+                    <span class="acopio">filtro acopio</span>
+                    <input type="checkbox" id="acopio" checked>
+                    <span class="checkmark"></span>
+                </label>
+            </div> 
+        </div>
+    </div>  
+    <div class="menu__button" id="button">
+        <button type="button" onclick="menuToggle()"></button>
+    </div>
+    
+    <div id="myMap" class="myMap"></div>
+    
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+
+    <script src="/js/filtro.js"></script>
+    <script src="/js/map-front.js"></script>
+</body>
+</html>
