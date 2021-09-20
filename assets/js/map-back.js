@@ -79,7 +79,9 @@ form.addEventListener('submit', (e) =>{
         fetch('/api', {
             method: 'POST',
             body: fomrdata
-        })
+        }).then(setTimeout(function(){
+            location.reload()
+        },2000))
     })
 })
 
