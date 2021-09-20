@@ -121,12 +121,10 @@ function getUsers(){
 // post
 
 app.post('/api', upload.single('image'), (req, res) =>{
-    console.log('imagen subida')
     const params = req.body;
     params.icon_url = `/img/${req.file.originalname}`
 
     mapDB.insert(params)
-    console.log('en teoria info tambien subida')
 })
 
 app.get('/empresa', (req, res) =>{
