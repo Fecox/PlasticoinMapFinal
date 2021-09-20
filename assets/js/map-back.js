@@ -62,7 +62,6 @@ image.addEventListener('load', function(e){
 })
 
 form.addEventListener('submit', (e) =>{
-    console.log('formulario resivido')
     const fomrdata = new FormData(form)
     const name = fomrdata.get('name')
     fomrdata.delete('image')
@@ -81,7 +80,7 @@ form.addEventListener('submit', (e) =>{
             method: 'POST',
             body: fomrdata
         })
-	.then(console.log('formulario enviado'))
+	.then(location.reload())
     })
 })
 
