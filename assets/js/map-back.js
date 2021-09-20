@@ -73,14 +73,14 @@ form.addEventListener('submit', (e) =>{
     canvas = cropper.getCroppedCanvas({
         height: 300,
         width: 300
-    }).toBlob(function(blob){
+    }).toBlob(async function(blob){
         file = new File([blob], `${name}.png`, {type: blob.type});
         fomrdata.set('image', file)
-        fetch('/api', {
+        await fetch('/api', {
             method: 'POST',
             body: fomrdata
         })
-	.then(console.log('ahora si?'))
+	.then(location.reload())
     })
 })
 
