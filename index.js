@@ -121,7 +121,8 @@ function getUsers(){
 // post
 
 app.post('/api', upload.single('image'), (req, res) =>{
-    console.log(req.body)
+    console.log('llegaron los datos')
+    // console.log(req.body)
     const params = req.body;
     params.icon_url = `/img/${req.file.originalname}`
 
