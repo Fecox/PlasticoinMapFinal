@@ -80,7 +80,7 @@ form.addEventListener('submit', (e) =>{
             method: 'POST',
             body: fomrdata
         })
-	.then(location.reload())
+	.then(console.log('ahora si?'))
     })
 })
 
