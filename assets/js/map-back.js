@@ -81,8 +81,7 @@ form.addEventListener('submit', (e) =>{
             method: 'POST',
             body: fomrdata
         })
-	console.log('formulario enviado')
-        location.reload()
+	.then(console.log('formulario enviado'))
     })
 })
 
