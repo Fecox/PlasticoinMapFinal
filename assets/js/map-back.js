@@ -81,7 +81,7 @@ form.addEventListener('submit', (e) =>{
             body: fomrdata
         }).then(setTimeout(function(){
             location.reload()
-        },2000))
+        },1000))
     })
 })
 
