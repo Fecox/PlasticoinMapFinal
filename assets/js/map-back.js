@@ -73,15 +73,15 @@ form.addEventListener('submit', (e) =>{
     canvas = cropper.getCroppedCanvas({
         height: 300,
         width: 300
-    }).toBlob(async function(blob){
+    }).toBlob(function(blob){
         file = new File([blob], `${name}.png`, {type: blob.type});
         fomrdata.set('image', file)
-        await fetch('/api', {
+        fetch('/api', {
             method: 'POST',
             body: fomrdata
         })
-	.then(location.reload())
     })
+    location.reload();
 })
 
 // doble click event
