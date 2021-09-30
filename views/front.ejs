@@ -42,31 +42,37 @@
 
     <div id="filter_container" class="filter__container">
         <div class="filter__menu" id="menu_filter">
-            <div class="title__menu"> 
-                FILTROS
-            </div>
-            <div class="filtro">
-                <div>
-                    <label class="container">
-                        <span class="empresa">filtro empresa</span>
-                        <input type="checkbox" id="empresas" checked>
-                        <span class="checkmark"></span>
-                    </label>
-                </div> 
-                <div>
-                    <label class="container">
-                        <span class="beneficio">filtro beneficio</span>
-                        <input type="checkbox" id="beneficio" checked>
-                        <span class="checkmark"></span>
-                    </label>
+            <div class="filter__inside">
+                <div class="title__menu"> 
+                    <div class="lupa__filter">
+                        <img src="/recursos/lupa.jpg" alt="" class="lupa__img">
+                    </div>
+                    <div class="search">
+                        <h1 class="serach__text">
+                            Buscador
+                        </h1>
+                    </div>
                 </div>
-                <div>
-                    <label class="container">
-                        <span class="acopio">filtro acopio</span>
-                        <input type="checkbox" id="acopio" checked>
-                        <span class="checkmark"></span>
-                    </label>
-                </div> 
+                <div class="filtro">
+                    <div>
+                        <label class="container empresa"> Empresas Adheridas
+                            <input type="checkbox" id="empresas" checked>
+                            <span class="checkmark checkmark__empresa"></span>
+                        </label>
+                    </div> 
+                    <div>
+                        <label class="container beneficio"> Empresas Responsables
+                            <input type="checkbox" id="beneficio" checked>
+                            <span class="checkmark checkmark__beneficio"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="container acopio"> Centros de Acopio
+                            <input type="checkbox" id="acopio" checked>
+                            <span class="checkmark checkmark__acopio"></span>
+                        </label>
+                    </div> 
+                </div>
             </div>
         </div>
     </div>  
