@@ -39,9 +39,11 @@ body{
 }
 
 .lupa{
-	width: 80%;
-	height: 80%;
-	padding: 5px;
+	width: 80px;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+	padding-right: 10px;
 	transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
@@ -64,18 +66,40 @@ body{
 .filter__menu{
     position: absolute;
     z-index: 1000;
-	height: 300px;
 	width: 0px;
-	background-color: white;
+	background-color: #e2e8f0;
 	cursor: default;
 	overflow: hidden;
 	transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 	color: white;
 	pointer-events: auto;
-	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.473);
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+	font-family: 'Poppins' , sans-serif;
 	vertical-align: 50%;
-	top: calc(50% - 250px);
+	top: calc(50% - 255px);
 }
+
+.title__menu{
+	display: flex;
+}
+
+.filter__inside{
+	background-color: white;
+}
+
+.lupa__filter{
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	display: flex;
+}
+
+.lupa__img{
+	width: 50px;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;	
+}
+
 
 .filter__container{
 	display: block;
@@ -87,28 +111,61 @@ body{
 }
 
 .title__menu{
-	padding: 20px 85px;
+	padding: 0px 50px;
 	display: flex;
 	align-items: center;
 }
 
+.search{
+	display: flex;
+	width: auto;
+	align-items: center;
+	text-align: right;
+	padding-left: 1rem;
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+	flex-grow: 1;
+}
+
+.serach__text{
+	display: inline-block;
+	text-decoration: none;
+	color: #00567a;
+	margin-right: 1rem;
+	font-size: 1.4rem;
+	background-color: transparent;
+	line-height: 1.5;	
+}
+
+.filtro{
+	padding-bottom: 12px;
+}
+
 .filtro div{
+	background-color: #e2e8f0;
+	display: flex;
+	line-height: 1.5;
+	align-items: center;
+	padding: 10px 20px;
 	cursor: pointer;
-	margin-top: 50px;
-	margin-left: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 18px;
+	margin-bottom: 5px;
+	border-radius: 3px;
 }
 
 /* estilos para usar en javascript*/
 
 .filter__menu_move{
 	width: 300px;
-	box-shadow: 20px 0px 40px rgba(0, 0, 0, 0.473);
+	padding: .75rem;
 }
 
 .menu__button_move{
 	width: 30px;
 	height: 55px;
-	left: 300px;
+	left: 324px;
 	box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.247);
 }
 
@@ -138,78 +195,93 @@ body{
 }
 
 .beneficio{
-	color: #057c28;
+	color: #00567a;
 }
 
 .acopio{
-	color: white;
+	color: #057c28;
 }
 
-/* Customize the label (the container) */
+/* The container */
 .container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+	border-radius: 50px;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px rgba(1, 1, 1, 0.5);
+  }
+  
 
-/* Hide the browser's default radio button */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark{
+	background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a backround empresa */
+  .container input:checked ~ .checkmark__empresa {
+	background-color: #d04001;
+  }
+  
+  /* When the checkbox is checked, add a background beneficio */
+  .container input:checked ~ .checkmark__beneficio {
+	background-color: #00567a;
+  }
+  
+  /* When the checkbox is checked, add a background acopio */
+  .container input:checked ~ .checkmark__acopio {
+	background-color: #057c28;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+	display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+  }
 
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.container .checkmark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-}
 
 /* header style */
 
