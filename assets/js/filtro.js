@@ -2,10 +2,14 @@
 const filterMenu = document.getElementById("menu_filter")
 const button = document.getElementById("button")
 const body = document.getElementById("body")
+const lupa = document.getElementById("lupa")
+const arrow = document.getElementById("arrow");
 
 function menuToggle(){
     filterMenu.classList.toggle("filter__menu_move");
-    button.classList.toggle("menu__button_move")
+    button.classList.toggle("menu__button_move");
+    lupa.classList.toggle("lupa__move");
+    arrow.classList.toggle("arrow__move");
 }
 
 
