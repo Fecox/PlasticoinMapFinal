@@ -8,36 +8,73 @@
    <link rel="stylesheet" href="/css/front.css">
 </head>
 <body id="body">
-    <div class="filter__menu" id="menu_filter">
-        <div class="title__menu"> 
-            FILTROS
-        </div>
-        <div class="filtro">
-            <div>
-                <label class="container">
-                    <span class="empresa">filtro empresa</span>
-                    <input type="checkbox" id="empresas" checked>
-                    <span class="checkmark"></span>
-                </label>
-            </div> 
-            <div>
-                <label class="container">
-                    <span class="beneficio">filtro beneficio</span>
-                    <input type="checkbox" id="beneficio" checked>
-                    <span class="checkmark"></span>
-                </label>
+    <div id="header" class="divheader">
+       <header class="header">
+           <div class="headcontainer">
+                <nav class="menu">
+                    <div class="menu__container">
+                        <div class="logo">
+                            <a class="alogo" href="https://www.plasticoin.com.uy">
+                                <img class="logoimg" src="/recursos/logo.png" alt="">
+                            </a>
+                        </div>
+                        <div class="divmenu">
+                            <div class="text">
+                                <a href="https://www.plasticoin.com.uy/nosotros">
+                                    Nosotros
+                                </a>
+                                <a href="https://www.plasticoin.com.uy/como-ayudar-a-reciclar">
+                                    Centros de Acopio
+                                </a>
+                                <a href="https://www.plasticoin.com.uy/obtener-beneficios">
+                                    Obtener beneficios
+                                </a>
+                                <a href="https://www.plasticoin.com.uy/empresas">
+                                    Empresas
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+           </div>
+       </header>
+    </div>
+
+    <div id="filter_container" class="filter__container">
+        <div class="filter__menu" id="menu_filter">
+            <div class="title__menu"> 
+                FILTROS
             </div>
-            <div>
-                <label class="container">
-                    <span class="acopio">filtro acopio</span>
-                    <input type="checkbox" id="acopio" checked>
-                    <span class="checkmark"></span>
-                </label>
-            </div> 
+            <div class="filtro">
+                <div>
+                    <label class="container">
+                        <span class="empresa">filtro empresa</span>
+                        <input type="checkbox" id="empresas" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </div> 
+                <div>
+                    <label class="container">
+                        <span class="beneficio">filtro beneficio</span>
+                        <input type="checkbox" id="beneficio" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div>
+                    <label class="container">
+                        <span class="acopio">filtro acopio</span>
+                        <input type="checkbox" id="acopio" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </div> 
+            </div>
         </div>
     </div>  
     <div class="menu__button" id="button">
-        <button type="button" onclick="menuToggle()"></button>
+        <button type="button" onclick="menuToggle()">
+            <img id="lupa" class="lupa" src="/recursos/lupa.jpg" alt="">
+            <img src="/recursos/arrow.png" alt="" class="arrow" id="arrow">
+        </button>
     </div>
     
     <div id="myMap" class="myMap"></div>
