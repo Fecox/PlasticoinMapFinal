@@ -26,6 +26,7 @@ body{
 /* boton del menu despegable */
 
 .menu__button{
+	overflow: hidden;
 	position: absolute;
 	z-index: 1000;
 	height: 89px;
@@ -64,6 +65,7 @@ body{
 /* menu desplegable filtro*/
 
 .filter__menu{
+	overflow: hidden;
     position: absolute;
     z-index: 1000;
 	width: 0px;
@@ -76,7 +78,7 @@ body{
 	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
 	font-family: 'Poppins' , sans-serif;
 	vertical-align: 50%;
-	top: calc(50% - 255px);
+	top: calc(50% - 155px);
 }
 
 .title__menu{
@@ -155,6 +157,10 @@ body{
 }
 
 /* estilos para usar en javascript*/
+
+.hidden{
+	display: none;
+}
 
 .filter__menu_move{
 	width: 300px;
@@ -285,6 +291,10 @@ body{
 /* header style */
 
 .divheader{
+	overflow: hidden;
+	position: absolute;
+	z-index: 1000;
+	width: 100%;
 	box-sizing: border-box;
 	border: 0 solid #e2e8f0;
 	font-family: 'Poppins' , sans-serif;
@@ -297,7 +307,7 @@ body{
 }
 
 .headcontainer{
-	max-width: 1024px;
+	box-sizing: border-box;
 	width: 100%;
 	margin-right: auto;
 	margin-left: auto;
@@ -314,6 +324,7 @@ body{
 
 .menu__container{
 	width: 100%;
+	justify-content: space-between;
 	display: flex;
 }
 
@@ -338,8 +349,8 @@ body{
 }
 
 .divmenu{
-	display: flex;
-	width: auto;
+	width: 1200px;
+	display: none;
 	align-items: center;
 	text-align: right;
 	padding-left: 1rem;
@@ -365,6 +376,118 @@ body{
 	line-height: 1.5;
 
 }
+
+.threeline__menu{
+	align-items: center;
+	display: flex;
+}
+
+.threeline__button{
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	align-items: center;
+	display: flex;
+	border-width: 1px;
+	border-radius: 0.25rem;
+	line-height: inherit;
+	color: inherit;
+	background-color: transparent;
+	background-image: none;
+	border: 0 solid #e2e8f0;
+}
+
+.svgg{
+	height: 1.5rem;
+}
+
+.log__reg{
+	border: 0 solid #e2e8f0;
+	margin-left: 2rem;
+}
+
+.log{
+	margin-top: 0;
+	display: inline-block;
+	text-decoration: none;
+	color: #00567a;
+	margin-right: 0.5rem;
+	font-size: 1rem;
+	background-color: transparent;
+}
+
+.reg{
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #00567a;
+	border-radius: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	border: solid #00567a;
+	font-weight: 600;
+	border-width: 2px;
+}
+
+.menu__des{
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+
+.des__container a{
+	text-decoration: none;
+	color: #00567a;
+	margin-right: 1rem;
+	margin-top: 1rem;
+	font-size: 1rem;
+	display: block;
+	background-color: transparent;
+	font-family: 'Poppins' , sans-serif;
+}
+
+/* responsive */
+/*
+@media (max-width: 640px){
+	.filter__menu_move{
+		width: 240px;
+	}
+	.filter__menu{
+		height: 240px;
+	}
+}
+*/
+
+@media (min-width: 640px) {
+	.headcontainer{
+		max-width: 640px;
+	}
+}
+
+@media (min-width: 768px) {
+	.headcontainer{
+		max-width: 768px;
+	}
+}
+
+@media (min-width: 1024px) {
+	.filter__menu_move{
+		width: 300px;
+	}
+	.headcontainer{
+		max-width: 1024px;
+	}
+	.divmenu{
+		display: flex;
+	}
+	.threeline__menu{
+		display: none;
+	}
+}
+
+
 
 
 
