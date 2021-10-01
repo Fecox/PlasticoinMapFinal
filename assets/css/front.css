@@ -460,7 +460,7 @@ body{
 }
 */
 
-@media (max-width: 738px){
+@media (max-width: 1024px){
 	.logoimg{
 		width: 16rem;
 	}
