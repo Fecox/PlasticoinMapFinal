@@ -460,12 +460,15 @@ body{
 }
 */
 
+@media (max-width: 738px){
+	.logoimg{
+		width: 16rem;
+	}
+}
+
 @media (min-width: 640px) {
 	.headcontainer{
 		max-width: 640px;
-	}
-	.logoimg{
-		width: 16rem;
 	}
 }
 
