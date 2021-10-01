@@ -4,6 +4,7 @@ const button = document.getElementById("button")
 const body = document.getElementById("body")
 const lupa = document.getElementById("lupa")
 const arrow = document.getElementById("arrow");
+const desMenu = document.getElementById("desmenu");
 
 function menuToggle(){
     filterMenu.classList.toggle("filter__menu_move");
@@ -12,7 +13,13 @@ function menuToggle(){
     arrow.classList.toggle("arrow__move");
 }
 
-
+function hiddeShowDesMenu(){
+    if (desMenu.className == 'menu__des') {
+        desMenu.className = 'menu__des hidden';
+    }else if (desMenu.className == 'menu__des hidden'){
+        desMenu.className = 'menu__des';
+    }
+}
 
 const empresasChBtn = document.getElementById('empresas')
 const beneficoChBtn = document.getElementById('beneficio')
