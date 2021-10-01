@@ -104,7 +104,6 @@ body{
 .filter__container{
 	display: block;
 	position: absolute;
-	z-index: 1000;
 	height: 100%;
 	width: 300px;
 
