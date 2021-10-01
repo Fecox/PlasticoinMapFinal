@@ -342,7 +342,7 @@ body{
 }
 
 .logoimg{
-	width: 16rem;
+	width: 30rem;
 	max-width: 100%;
 	height: auto;
 	vertical-align: middle;
@@ -464,6 +464,9 @@ body{
 	.headcontainer{
 		max-width: 640px;
 	}
+	.logoimg{
+		width: 16rem;
+	}
 }
 
 @media (min-width: 768px) {
@@ -477,7 +480,7 @@ body{
 		width: 300px;
 	}
 	.headcontainer{
-		max-width: 1024px;
+		max-width: 1200px;
 	}
 	.divmenu{
 		display: flex;
