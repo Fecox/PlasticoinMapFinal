@@ -85,7 +85,7 @@
 
 
         for (var i=0;i<data.length;i++){
-            console.log(`${data[3].popUpinfo}`)
+            
             let iconMarker = L.icon({
                 iconUrl: data[i].icon_url,
                 shadowUrl: '/frames/beneficio.png',
