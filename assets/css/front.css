@@ -81,9 +81,6 @@ body{
 	top: calc(50% - 155px);
 }
 
-.title__menu{
-	display: flex;
-}
 
 .filter__inside{
 	background-color: white;
@@ -142,19 +139,54 @@ body{
 	padding-bottom: 12px;
 }
 
-.filtro div{
+
+.divbeneficio{
 	background-color: #e2e8f0;
 	display: flex;
 	line-height: 1.5;
 	align-items: center;
 	padding: 10px 20px;
 	cursor: pointer;
-	margin-left: 15px;
-	margin-right: 15px;
+	margin-left: 9px;
+	margin-right: 9px;
 	margin-top: 18px;
 	margin-bottom: 5px;
 	border-radius: 3px;
 }
+
+.divacopio{
+	background-color: #e2e8f0;
+	display: flex;
+	line-height: 1.5;
+	align-items: center;
+	padding: 10px 20px;
+	cursor: pointer;
+	margin-left: 9px;
+	margin-right: 9px;
+	margin-top: 18px;
+	margin-bottom: 5px;
+	border-radius: 3px;
+}
+
+.divempresa{
+	background-color: #e2e8f0;
+	display: flex;
+	line-height: 1.5;
+	align-items: center;
+	padding: 10px 20px;
+	cursor: pointer;
+	margin-left: 9px;
+	margin-right: 9px;
+	margin-top: 18px;
+	margin-bottom: 5px;
+	border-radius: 3px;
+}
+
+
+
+
+
+
 
 /* estilos para usar en javascript*/
 
@@ -449,16 +481,49 @@ body{
 }
 
 /* responsive */
-/*
+
+
 @media (max-width: 640px){
 	.filter__menu_move{
-		width: 240px;
+		width: 250px;
 	}
 	.filter__menu{
-		height: 240px;
+
+		top: calc(50% -135px);
+	}
+	.title__menu{
+		padding: 0px 28px;
+	}
+	.filtro{
+		padding-bottom: 9px;
+	}
+	.empresa{
+		font-size: 14px;
+	}
+	.beneficio{
+		font-size: 14px;
+		padding-bottom: 4px;
+	}
+	.acopio{
+		font-size: 14px;
+	}
+	.menu__button_move{
+		left: 274px;
+	}
+	.divbeneficio{
+		padding: 8px 6px 8px 15px;
+		margin-top: 10px;
+	}
+	.divempresa{
+		padding: 10px 15px;
+		margin-top: 10px;
+	}
+	.divacopio{
+		padding: 10px 15px;
+		margin-top: 10px;
 	}
 }
-*/
+
 
 @media (max-width: 1024px){
 	.logoimg{
