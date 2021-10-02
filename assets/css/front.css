@@ -1075,9 +1075,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-	background: white;
-	color: #333;
+	background: #e2e8f0;
+	color: #00567a;
 	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	font-family: 'Poppins' , sans-serif;
 	}
 .leaflet-container a.leaflet-popup-close-button {
 	position: absolute;
