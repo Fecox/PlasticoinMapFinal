@@ -20,6 +20,7 @@ let iconTempMarker = L.icon({
 
 var tempLayer = new L.FeatureGroup();
 var dblclickEvent = false;
+// var detect;
 
 const form = document.getElementById('form')
 const formAnm = document.getElementById('div_form')
@@ -68,20 +69,26 @@ form.addEventListener('submit', (e) =>{
     fomrdata.set('lat', latLong.lat)
     fomrdata.set('lon', latLong.lng)
     var file
+    // convert areatext to hmtl text multiline
+    var pop = fomrdata.get('popUpinfo')
+    pop = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    fomrdata.delete('popUpinfo')
+    fomrdata.set('popUpinfo', pop)
+ 
     
     
     canvas = cropper.getCroppedCanvas({
         height: 300,
         width: 300
-    }).toBlob(function(blob){
+    }).toBlob(async function(blob){
         file = new File([blob], `${name}.png`, {type: blob.type});
         fomrdata.set('image', file)
-        fetch('/api', {
+        await fetch('/api', {
             method: 'POST',
             body: fomrdata
         }).then(setTimeout(function(){
             location.reload()
-        },300))
+        },2000))
     })
 })
 
@@ -137,6 +144,7 @@ async function getEmpresa() {
         })
     
        var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
+       marker.bindPopup(`${data[i].popUpinfo}`);
        Empresa.addLayer(marker);
     }
     return false;
@@ -162,6 +170,7 @@ async function getAcopio() {
         })
     
        var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
+       marker.bindPopup(`${data[i].popUpinfo}`);
        Acopio.addLayer(marker);
     }
     return false;
@@ -188,6 +197,7 @@ async function getBeneficio() {
         })
     
        var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
+       marker.bindPopup(`${data[i].popUpinfo}`);
        Beneficio.addLayer(marker);
     }
     return false;
