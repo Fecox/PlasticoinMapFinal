@@ -1,5 +1,4 @@
     // create the map atributtion 
-
     let myMap = L.map('myMap', {
         center: [-34.9112377243155, -54.96569965207551],
         zoom: 15,
@@ -32,7 +31,6 @@
         const res = await fetch('/empresa');
         const data = await res.json();
 
-
         for (var i=0;i<data.length;i++){
             
             let iconMarker = L.icon({
@@ -46,6 +44,7 @@
             })
         
         var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
+        marker.bindPopup(`${data[i].popUpinfo}`);
         Empresa.addLayer(marker);
         }
         return false;
@@ -59,7 +58,7 @@
 
 
         for (var i=0;i<data.length;i++){
-            
+
             let iconMarker = L.icon({
                 iconUrl: data[i].icon_url,
                 shadowUrl: '/frames/acopio.png',
@@ -71,6 +70,7 @@
             })
         
         var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
+        marker.bindPopup(`${data[i].popUpinfo}`);
         Acopio.addLayer(marker);
         }
         return false;
@@ -85,7 +85,7 @@
 
 
         for (var i=0;i<data.length;i++){
-            
+            console.log(`${data[3].popUpinfo}`)
             let iconMarker = L.icon({
                 iconUrl: data[i].icon_url,
                 shadowUrl: '/frames/beneficio.png',
@@ -97,6 +97,7 @@
             })
         
         var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
+        marker.bindPopup(`${data[i].popUpinfo}`);
         Beneficio.addLayer(marker);
         }
         return false;
