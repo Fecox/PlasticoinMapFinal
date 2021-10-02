@@ -1,3 +1,7 @@
+/* fuentes de google*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,100&display=swap');
+
 /* My map style */
 
 .myMap{
@@ -581,9 +585,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-	background: white;
-	color: #333;
+	background: #e2e8f0;
+	color: #00567a;
 	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	font-family: 'Poppins' , sans-serif;
 	}
 .leaflet-container a.leaflet-popup-close-button {
 	position: absolute;
