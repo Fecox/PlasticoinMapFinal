@@ -529,6 +529,11 @@ body{
 	.logoimg{
 		width: 16rem;
 	}
+	.leaflet-popup-content {
+		max-width: 300px;
+		height: 300px;
+		font-size: 14.65px;
+		}
 }
 
 @media (min-width: 640px) {
