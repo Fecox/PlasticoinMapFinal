@@ -31,7 +31,7 @@ const upload = multer({ storage: storage })
 // declaration settings const
 const initializePassport = require('./passport-config');
 getUsers()
-const PORT = 8080;
+const PORT = 3000;
 
 
 // settings
@@ -64,7 +64,7 @@ app.get('/admin', checkAuthenticated, (req, res) =>{
     res.render('back')
 })
 
-app.get('/register', /* checkAuthenticated, */ (req, res) =>{ // borrar comentario cuando terminemos el login => cuando agamos lac oneccione a BD y agregado un user
+app.get('/register',  checkAuthenticated,  (req, res) =>{ 
     res.render('register');
 })
 
@@ -73,6 +73,10 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
 }))
+
+app.get('/success', (req, res) =>{
+    res.render('success');
+})
 
 app.post('/register', async (req, res) =>{
     try {
@@ -84,7 +88,9 @@ app.post('/register', async (req, res) =>{
             password: encryptpass
         })
         loginDB.insert(user);
-        res.redirect('/register')
+        setTimeout(function(){
+            res.redirect('/success')
+        },2000)
     }catch {
         res.redirect('/register')
     }
@@ -121,8 +127,6 @@ function getUsers(){
 // post
 
 app.post('/api', upload.single('image'), (req, res) =>{
-    console.log('llegaron los datos')
-    // console.log(req.body)
     const params = req.body;
     params.icon_url = `/img/${req.file.originalname}`
 
