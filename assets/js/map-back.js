@@ -22,6 +22,7 @@ var tempLayer = new L.FeatureGroup();
 var dblclickEvent = false;
 // var detect;
 
+const imagediv = document.getElementById('div__image');
 const form = document.getElementById('form')
 const formAnm = document.getElementById('div_form')
 const formString = "form"
@@ -33,7 +34,9 @@ var image = document.getElementById('image');
 var cropper,reader,file,canvas;
 
 $("body").on("change", ".image", function(e){
-    
+
+    imagediv.classList.toggle("div__image_hide");
+
     var files = e.target.files;
     var done = function(url){
         image.src = url;
@@ -91,6 +94,10 @@ form.addEventListener('submit', (e) =>{
         },2000))
     })
 })
+
+function closeCrop(){
+    imagediv.classList.toggle("div__image_hide");
+}
 
 // doble click event
 
