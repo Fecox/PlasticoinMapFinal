@@ -8,58 +8,75 @@
     <link rel="stylesheet" href="/css/back.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <link href="/croperjs/cropper.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="icon" href="https://www.plasticoin.com.uy/images/favicon-plasticoin.png" type="image/x-icon">
 </head>
 <body>
     
     <div id="myMap" class="myMap"></div>
-    <div id="div_form" class="form">
-        <div class="inter__form">
-            <h1> agregar nuevos marcadores</h1>
-            <form id="form" enctype="multipart/form-data" onsubmit="return false">
-                <div>
-                    <label for="name">nombre de la empresa</label>
-                    <input type="text" id="name" name="name" placeholder="Plasticoin" required>
-                </div>
-                <div>
-                    <label for="info">info</label>
-                   <textarea name="popUpinfo" id="popUpinfo" cols="30" rows="10" required></textarea>
-                </div>
-                <div>
-                    <label for="image">Logo de Empresa</label>
-                    <input type="file" name="image" class="image" required>
-                </div>
-                <div>
-                    <div>
-                        <label class="container">
-                            <input type="radio" id="empresa" name="Tipo" value="Empresa" required>
-                            <span class="empresa">Empresa</span>
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="container">
-                            <input type="radio" id="beneficio" name="Tipo" value="Beneficio">
-                            <span class="beneficio">Beneficio</span>
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="container">
-                            <input type="radio" id="acopio" name="Tipo" value="Acopio">
-                            <span class="acopio">Acopio</span>
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-                <button type="submit">submit</button>
-            </form>
-        </div>
+    <div class="div__image div__image_hide" id="div__image">
         <div class="imagediv">
             <img id="image" src="" alt="">
         </div>
-        <div class="preview"></div>
+        <button class="cut__button" onclick="closeCrop()">Hecho</button>
     </div>
-
+    <div id="div_form" class="form">
+        <div class="inter__form">
+            <div class="title__form">
+                <p> Agregar Nuevos Marcadores</p>
+            </div>
+            <div class="div__container">
+                <div class="div__form">
+                    <form id="form" class="markers" enctype="multipart/form-data" onsubmit="return false">
+                        <div class="name__form">
+                            <label for="name">Nombre de Empresa</label>
+                            <input type="text" id="name" name="name" placeholder="Plasticoin" required>
+                        </div>
+                        <div class="logo__form">
+                            <label class="label__title">Logo de Empresa</label>
+                            <input type="file" id="file" name="image" class="image" required>
+                            <label for="file" class="upload__button">
+                                <i class="material-icons">
+                                    add_photo_alternate
+                                </i> &nbsp;
+                                Seleccione imagen
+                            </label>
+                        </div>
+                        <div class="pop__info">
+                            <label class="info__label" for="info">Descripcion de Popup</label>
+                            <textarea class="pop__text" name="popUpinfo" id="popUpinfo" cols="35" rows="10" required></textarea>
+                        </div>
+                        <div class="radio__buttons">
+                            <div>
+                                <label class="radio">
+                                    Empresas adheridas
+                                    <input type="radio" id="empresa" name="Tipo" value="Empresa" required>
+                                    <span class="checkmark checkmark__empresa"></span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="radio">
+                                    Empresas Responsables
+                                    <input type="radio" id="beneficio" name="Tipo" value="Beneficio">
+                                    <span class="checkmark checkmark__beneficio"></span>
+                                </label>
+                            </div>
+                            <div>
+                                <label class="radio">
+                                    Centros de Acopio
+                                    <input type="radio" id="acopio" name="Tipo" value="Acopio">
+                                    <span class="checkmark checkmark__acopio"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="submit__button" type="submit">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="preview"></div> 
+    </div>    
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
     integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
     crossorigin=""></script>
