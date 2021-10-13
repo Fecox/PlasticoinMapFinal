@@ -30,11 +30,11 @@
                 <div class="div__form">
                     <form id="form" class="markers" enctype="multipart/form-data" onsubmit="return false">
                         <div class="name__form">
-                            <label for="name">Nombre de Empresa</label>
+                            <label for="name">Nombre de Empresa:</label>
                             <input type="text" id="name" name="name" placeholder="Plasticoin" required>
                         </div>
                         <div class="logo__form">
-                            <label class="label__title">Logo de Empresa</label>
+                            <label class="label__title">Logo de Empresa:</label>
                             <input type="file" id="file" name="image" class="image" required>
                             <label for="file" class="upload__button">
                                 <i class="material-icons">
@@ -44,28 +44,28 @@
                             </label>
                         </div>
                         <div class="pop__info">
-                            <label class="info__label" for="info">Descripcion de Popup</label>
-                            <textarea class="pop__text" name="popUpinfo" id="popUpinfo" cols="35" rows="10" required></textarea>
+                            <label class="info__label" for="info">Descripcion de Popup:</label>
+                            <textarea class="pop__text" name="popUpinfo" id="popUpinfo" cols="44" rows="10" required></textarea>
                         </div>
                         <div class="radio__buttons">
                             <div>
                                 <label class="radio">
                                     Empresas adheridas
-                                    <input type="radio" id="empresa" name="Tipo" value="Empresa" required>
+                                    <input type="radio" id="empresa" name="Tipo" value="Empresa Adheridas" required>
                                     <span class="checkmark checkmark__empresa"></span>
                                 </label>
                             </div>
                             <div>
                                 <label class="radio">
                                     Empresas Responsables
-                                    <input type="radio" id="beneficio" name="Tipo" value="Beneficio">
+                                    <input type="radio" id="beneficio" name="Tipo" value="Empresas Responsables">
                                     <span class="checkmark checkmark__beneficio"></span>
                                 </label>
                             </div>
                             <div>
                                 <label class="radio">
                                     Centros de Acopio
-                                    <input type="radio" id="acopio" name="Tipo" value="Acopio">
+                                    <input type="radio" id="acopio" name="Tipo" value="Centros de Acopio">
                                     <span class="checkmark checkmark__acopio"></span>
                                 </label>
                             </div>
@@ -77,6 +77,72 @@
         </div>
         <div class="preview"></div> 
     </div>    
+    <div class="edit__div edit__div_hide" id="edit_div">
+        <button class="edit__button" onclick="modifyButton()">Editar</button>
+        <button class="edit__button" onclick="confirmDelete()">Eliminar</button>
+    </div>
+    <div class="edit__menu" id="bottom_menu">
+        <div class="title__form">
+            <p> Editar Marcadores:</p>
+        </div>
+        <div>
+            <form id="form" class="markers__edit" enctype="multipart/form-data" onsubmit="return false">
+                <div>
+                    <div class="name__edit">
+                        <label for="name">Nombre de Empresa:</label>
+                        <input type="text" id="name_edit" name="name" placeholder="Plasticoin" value="" required>
+                    </div>
+                    <div class="tipo__edit_show">
+                        <label  class="radio">
+                            <label id="tipo_edit" > empresa aherida</label>
+                            <input type="radio" id="empresa" name="Tipo" value="" checked>
+                            <span id="edit__color" class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="logo__edit">
+                        <label class="title__edit">Logo de Empresa:</label>
+                        <input type="file" id="file" name="image" class="image" required>
+                        <label for="file" class="upload__edit">
+                            <i class="material-icons">
+                                add_photo_alternate
+                            </i> &nbsp;
+                            Seleccione imagen
+                        </label>
+                    </div>
+                </div>
+                <div class="pop__edit">
+                    <label for="info">Descripcion de Popup:</label>
+                    <textarea name="popUpinfo" id="popUp_edit" cols="44" rows="10" required></textarea>
+                </div>
+                <div class="edit__preview">
+                    <img src="" alt="" id="img_edit">
+                </div> 
+            </form>
+        </div> 
+    </div>
+    <div class="modal__menu" id="modal_menu">
+        <div class="modal__container">
+            <header> Seguro desea eleminar el Marcador: </header>
+            <div class="modal__contenido">
+                <div>
+                    <img src="" id="img_marker">
+                    <label>Nombre de empresa:</label>                    
+                    <p id="name_marker"></p>
+                    <label>Tipo:</label>
+                    <p id="Tipo_marker"></p>
+                </div>
+                <div class="modal__button_container">
+                    <button class="modal__button" onclick="deleteMarker()">Eliminar</button>
+                    <button class="modal__button" onclick="confirmDelete()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
     integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
     crossorigin=""></script>
