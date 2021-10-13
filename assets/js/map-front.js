@@ -35,7 +35,7 @@
             
             let iconMarker = L.icon({
                 iconUrl: data[i].icon_url,
-                shadowUrl: '/frames/Empresas Responsables.png',
+                shadowUrl: '/frames/Empresa Adheridas.png',
 
                 shadowSize: [46, 46],
                 shadowAnchor: [23, 23],
