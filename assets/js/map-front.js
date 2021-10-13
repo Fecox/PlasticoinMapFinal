@@ -35,7 +35,7 @@
             
             let iconMarker = L.icon({
                 iconUrl: data[i].icon_url,
-                shadowUrl: '/frames/empresa.png',
+                shadowUrl: '/frames/Empresas Responsables.png',
 
                 shadowSize: [46, 46],
                 shadowAnchor: [23, 23],
@@ -61,7 +61,7 @@
 
             let iconMarker = L.icon({
                 iconUrl: data[i].icon_url,
-                shadowUrl: '/frames/acopio.png',
+                shadowUrl: '/frames/Centros de Acopio.png',
 
                 shadowSize: [46, 46],
                 shadowAnchor: [23, 23],
@@ -85,10 +85,10 @@
 
 
         for (var i=0;i<data.length;i++){
-            
+
             let iconMarker = L.icon({
                 iconUrl: data[i].icon_url,
-                shadowUrl: '/frames/beneficio.png',
+                shadowUrl: '/frames/Empresas Responsables.png',
 
                 shadowSize: [46, 46],
                 shadowAnchor: [23, 23],
@@ -97,7 +97,7 @@
             })
         
         var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
-        marker.bindPopup(`${data[i].popUpinfo}`);
+        marker.bindPopup(`${data[i].popUpinfo}`, { maxWidth: 500})
         Beneficio.addLayer(marker);
         }
         return false;
