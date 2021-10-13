@@ -7,7 +7,7 @@ const multer = require('multer');
 const datastore = require('nedb');
 const path = require('path');
 const app = express();
-  
+
 // set up DB login
 const loginDB = new datastore('./assets/DataBases/loginDB.db');
 loginDB.loadDatabase()
@@ -30,8 +30,9 @@ const upload = multer({ storage: storage })
 
 // declaration settings const
 const initializePassport = require('./passport-config');
+const { send } = require('process');
 getUsers()
-const PORT = 8080;
+const PORT = 3000;
 
 
 // settings
@@ -47,6 +48,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.static(path.join('assets')));
+app.use(express.json({ limit: '1mb' }));
 
 
 // routes call and redirections
@@ -129,12 +131,39 @@ function getUsers(){
 app.post('/api', upload.single('image'), (req, res) =>{
     const params = req.body;
     params.icon_url = `/img/${req.file.originalname}`
-
-    mapDB.insert(params)
+    
+    mapDB.insert(params);
 })
 
+app.post('/markers', (req, res) =>{
+    var lat = req.body.lat;
+    var lon = req.body.lon;
+    var tipo = req.body.tipo;
+    tipo = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+
+    mapDB.find({ lat: `${lat}`, lon: `${lon}`, Tipo: `${tipo}`}, (err, data) =>{
+        if (!err) {
+            res.send(data);
+        }else{
+            console.log(err);
+        }
+    })
+})
+
+app.post('/modify', (req, res) =>{
+    
+})
+
+app.post('/delete', (req, res) =>{
+    console.log(req.body[0]._id)
+    mapDB.remove({ _id: req.body[0]._id }, (err, numRemoved) =>{
+        console.log("se removio: " + numRemoved);
+    })
+})
+
+// get
 app.get('/empresa', (req, res) =>{
-    mapDB.find({ Tipo: 'Empresa' }, (err, data) =>{
+    mapDB.find({ Tipo: 'Empresa Adheridas' }, (err, data) =>{
         if(!err) {
             res.send(data)
         }else {
@@ -144,7 +173,7 @@ app.get('/empresa', (req, res) =>{
 })
 
 app.get('/beneficio', (req, res) =>{
-    mapDB.find({ Tipo: 'Beneficio' }, (err, data) =>{
+    mapDB.find({ Tipo: 'Empresas Responsables' }, (err, data) =>{
         if(!err) {
             res.send(data)
         }else {
@@ -154,7 +183,7 @@ app.get('/beneficio', (req, res) =>{
 })
 
 app.get('/acopio', (req, res) =>{
-    mapDB.find({ Tipo: 'Acopio' }, (err, data) =>{
+    mapDB.find({ Tipo: 'Centros de Acopio' }, (err, data) =>{
         if(!err) {
             res.send(data)
         }else {
