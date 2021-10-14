@@ -86,11 +86,11 @@
             <p> Editar Marcadores:</p>
         </div>
         <div>
-            <form id="form" class="markers__edit" enctype="multipart/form-data" onsubmit="return false">
+            <form id="edit_form" class="markers__edit" enctype="multipart/form-data" onsubmit="return false">
                 <div>
                     <div class="name__edit">
                         <label for="name">Nombre de Empresa:</label>
-                        <input type="text" id="name_edit" name="name" placeholder="Plasticoin" value="" required>
+                        <input type="text" id="name_edit" name="name" placeholder="Plasticoin" value="" >
                     </div>
                     <div class="tipo__edit_show">
                         <label  class="radio">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="logo__edit">
                         <label class="title__edit">Logo de Empresa:</label>
-                        <input type="file" id="file" name="image" class="image" required>
+                        <input type="file" id="file" name="image" class="image">
                         <label for="file" class="upload__edit">
                             <i class="material-icons">
                                 add_photo_alternate
@@ -112,12 +112,14 @@
                 </div>
                 <div class="pop__edit">
                     <label for="info">Descripcion de Popup:</label>
-                    <textarea name="popUpinfo" id="popUp_edit" cols="44" rows="10" required></textarea>
+                    <textarea name="popUpinfo" id="popUp_edit" cols="44" rows="10"></textarea>
                 </div>
-                <div class="edit__preview">
-                    <img src="" alt="" id="img_edit">
-                </div> 
+                <div class="edit__preview"></div> 
             </form>
+            <div style="display: flex; float: right;">
+                <button class="edit__button" style="margin: 5px 15px;" onclick="modifyMarker()">Editar</button>
+                <button class="edit__button" style="margin: 5px 15px;" onclick="modifyButton()">Cancelar</button>
+            </div>
         </div> 
     </div>
     <div class="modal__menu" id="modal_menu">
