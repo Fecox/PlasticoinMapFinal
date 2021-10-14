@@ -34,11 +34,12 @@ const tipoMaker = document.getElementById('Tipo_marker');
 const imgMaker = document.getElementById('img_marker');
 const nameEdit = document.getElementById('name_edit');
 const popEdit = document.getElementById('popUp_edit');
-const imgEdit = document.getElementById('img_edit');
 const tipoEdit = document.getElementById('tipo_edit');
 const colorEdit = document.getElementById('edit__color');
+const edifForm = document.getElementById('edit_form');
 const formString = "form"
 const bottomString = "edit__menu edit__button_move"
+var imgChange = false;
 var latLong
 var isOpen = false
 var markersData;
@@ -74,6 +75,7 @@ $("body").on("change", ".image", function(e){
 })
 
 image.addEventListener('load', function(e){
+    imgChange = true;
     cropper = new Cropper(image, {
         aspectRatio: 1,
         viewMode: 2,
@@ -93,7 +95,7 @@ form.addEventListener('submit', (e) =>{
     pop = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
     fomrdata.delete('popUpinfo')
     fomrdata.set('popUpinfo', pop)
- 
+    console.log(fomrdata.get('image'));
     
     canvas = cropper.getCroppedCanvas({
         height: 300,
@@ -101,6 +103,7 @@ form.addEventListener('submit', (e) =>{
     }).toBlob(async function(blob){
         file = new File([blob], `${name}.png`, {type: blob.type});
         fomrdata.set('image', file)
+        
         await fetch('/api', {
             method: 'POST',
             body: fomrdata
@@ -298,6 +301,22 @@ function confirmDelete(){
 
 // edit marker
 
+async function modifyMarker(){
+    const formdata = new FormData(edifForm);
+    if (imgChange) {
+        console.log("se subio imagen");    
+    }
+    else{
+        formdata.set('id', markerRes[0]._id);
+        formdata.delete('Tipo');
+        fetch('/modify',{
+            method: 'POST',
+            body: formdata
+        }).then(setTimeout(function(){
+            location.reload()
+        },2000))
+    }
+}
 
 // delete marker 
 function deleteMarker(){ 
@@ -330,7 +349,6 @@ function modifyButton(){
     var pop = markerRes[0].popUpinfo;
     pop = pop.replace(/<br>/g, "\r\n");
     popEdit.value = pop;
-    imgEdit.src = markerRes[0].icon_url;
     tipoEdit.innerHTML = markerRes[0].Tipo;
     switch (markerRes[0].Tipo){
         case 'Empresas Responsables':
