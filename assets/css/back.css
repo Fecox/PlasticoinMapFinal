@@ -182,6 +182,7 @@ body{
 	border-radius: 0.30rem;
 	overflow: hidden scroll;
 	border: 0 solid;
+	cursor: auto;
 }
 
 .edit__div{
@@ -235,7 +236,6 @@ body{
 
 .markers__edit{
 	display: flex;
-	margin-bottom: 1.8rem;
 	width: 100%;
 	padding-top: 0.5rem;
 }
@@ -306,6 +306,7 @@ body{
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;
 	margin-bottom: 0;
+	cursor: pointer;
 }
 
 .pop__edit{
@@ -328,6 +329,7 @@ body{
 	border-radius: 0.30rem;
 	overflow: hidden scroll;
 	border: 0 solid;
+	cursor: auto;
 }
 
 .tipo__edit_show{
