@@ -150,12 +150,17 @@ app.post('/markers', (req, res) =>{
     })
 })
 
-app.post('/modify', (req, res) =>{
-    
+app.post('/modify', upload.single('image'), (req, res) =>{
+    console.log(req.body.popUpinfo)
+    mapDB.update({ _id: req.body.id }, { $set: { name: req.body.name } }, { $set: { popUpinfo: req.body.popUpinfo } }, (err, numReplaced) =>{
+        console.log("se modifico nombre de: " + numReplaced);
+    })
+    mapDB.update({ _id: req.body.id }, { $set: { popUpinfo: req.body.popUpinfo } }, (err, numReplaced) =>{
+        console.log("se modifico popup de: " + numReplaced);
+    })
 })
 
 app.post('/delete', (req, res) =>{
-    console.log(req.body[0]._id)
     mapDB.remove({ _id: req.body[0]._id }, (err, numRemoved) =>{
         console.log("se removio: " + numRemoved);
     })
