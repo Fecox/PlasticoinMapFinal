@@ -301,20 +301,24 @@ function confirmDelete(){
 
 // edit marker
 
-async function modifyMarker(){
-    const formdata = new FormData(edifForm);
+function modifyMarker(){
     if (imgChange) {
-        console.log("se subio imagen");    
+        const formdata = new FormData(edifForm);
     }
     else{
-        formdata.set('id', markerRes[0]._id);
-        formdata.delete('Tipo');
+        var id = markerRes[0]._id;
+        var name = edifForm.name.value;
+        var popUpinfo = edifForm.popUpinfo.value;
+        var data = {id: `${id}`, name: `${name}`,popUpinfo: `${popUpinfo}`,}
         fetch('/modify',{
             method: 'POST',
-            body: formdata
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type': 'application/json'    
+            }
         }).then(setTimeout(function(){
             location.reload()
-        },2000))
+        },2000));
     }
 }
 
