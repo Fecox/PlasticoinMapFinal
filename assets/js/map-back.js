@@ -301,7 +301,7 @@ function confirmDelete(){
 
 // edit marker
 
-function modifyMarker(){
+async function modifyMarker(){
     const formdata = new FormData(edifForm);
     if (imgChange) {
         console.log("se subio imagen");    
