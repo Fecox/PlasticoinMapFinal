@@ -150,9 +150,9 @@ app.post('/markers', (req, res) =>{
     })
 })
 
-app.post('/modify', upload.single('image'), (req, res) =>{
-    console.log(req.body.popUpinfo)
-    mapDB.update({ _id: req.body.id }, { $set: { name: req.body.name } }, { $set: { popUpinfo: req.body.popUpinfo } }, (err, numReplaced) =>{
+app.post('/modify', (req, res) =>{
+    console.log(req.body.id)
+    mapDB.update({ _id: req.body.id }, { $set: { name: req.body.name } }, (err, numReplaced) =>{
         console.log("se modifico nombre de: " + numReplaced);
     })
     mapDB.update({ _id: req.body.id }, { $set: { popUpinfo: req.body.popUpinfo } }, (err, numReplaced) =>{
