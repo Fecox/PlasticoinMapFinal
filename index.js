@@ -6,6 +6,10 @@ const session = require('express-session');
 const multer = require('multer');
 const datastore = require('nedb');
 const path = require('path');
+const fs = require('fs');
+const pm2 = require('pm2');
+const { promisify } = require('util');
+const unlinkAsync = promisify(fs.unlink);
 const app = express();
 
 // set up DB login
@@ -32,7 +36,7 @@ const upload = multer({ storage: storage })
 const initializePassport = require('./passport-config');
 const { send } = require('process');
 getUsers()
-const PORT = 8080;
+const PORT = 3000;
 
 
 // settings
@@ -160,9 +164,35 @@ app.post('/modify', (req, res) =>{
     })
 })
 
+app.post('/modifyImage', upload.single('image'), (req, res) =>{
+    const params = req.body;
+    params.icon_url = `/img/${req.file.originalname}`;
+    mapDB.update({ _id: params.id }, { $set: { name: params.name } }, (err, numReplaced) =>{
+        console.log("se modifico nombre de: " + numReplaced);
+    })
+    mapDB.update({ _id: params.id }, { $set: { popUpinfo: params.popUpinfo } }, (err, numReplaced) =>{
+        console.log("se modifico popup de: " + numReplaced);
+    })
+    mapDB.update({ _id: params.id }, { $set: { icon_url: params.icon_url}}, (err, numReplaced) =>{
+        console.log("se modifico icon url de: " + numReplaced);
+    })
+    unlinkAsync(path.resolve('./assets' + params.oldPath));
+})
+
 app.post('/delete', (req, res) =>{
     mapDB.remove({ _id: req.body[0]._id }, (err, numRemoved) =>{
         console.log("se removio: " + numRemoved);
+    })
+    unlinkAsync(path.resolve('./assets' + req.body[0].icon_url));
+    pm2.connect(function(err){
+        if (err) {
+            console.log(err)
+            process.exit(2)
+        }
+
+        pm2.restart('map', (err, proc) =>{
+            pm2.disconnect();
+        })
     })
 })
 
