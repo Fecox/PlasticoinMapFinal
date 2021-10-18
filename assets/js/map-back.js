@@ -95,7 +95,6 @@ form.addEventListener('submit', (e) =>{
     pop = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
     fomrdata.delete('popUpinfo')
     fomrdata.set('popUpinfo', pop)
-    console.log(fomrdata.get('image'));
     
     canvas = cropper.getCroppedCanvas({
         height: 300,
@@ -303,13 +302,44 @@ function confirmDelete(){
 
 function modifyMarker(){
     if (imgChange) {
+        id = markerRes[0]._id;
         const formdata = new FormData(edifForm);
+        formdata.delete('Tipo');
+        formdata.set('id', id);
+        formdata.delete('image');
+        formdata.set('oldPath', markerRes[0].icon_url);
+        const name = formdata.get('name');
+        var file;
+        // convert areatext to hmtl text multiline
+        var pop = formdata.get('popUpinfo');
+        pop = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
+        formdata.delete('popUpinfo');
+        formdata.set('popUpinfo', pop);
+        
+        canvas = cropper.getCroppedCanvas({
+            height: 300,
+            width: 300
+        }).toBlob(async function(blob){
+            file = new File([blob], `${name}.png`, {type: blob.type});
+            formdata.set('image', file)
+            
+            await fetch('/modifyImage', {
+                method: 'POST',
+                body: formdata
+            }).then(setTimeout(function(){
+                location.reload()
+            },2000))
+        })
     }
     else{
         var id = markerRes[0]._id;
         var name = edifForm.name.value;
-        var popUpinfo = edifForm.popUpinfo.value;
-        var data = {id: `${id}`, name: `${name}`,popUpinfo: `${popUpinfo}`,}
+        // convert areatext to hmtl text multiline
+        var pop = edifForm.popUpinfo.value;
+        pop = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
+        var popUpinfo = pop;
+
+        var data = {id: `${id}`, name: `${name}`,popUpinfo: `${popUpinfo}`}
         fetch('/modify',{
             method: 'POST',
             body: JSON.stringify(data),
