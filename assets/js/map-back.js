@@ -1,7 +1,7 @@
 // set up of map
 
 
-let myMap = L.map('myMap').setView([-34.9112377243155, -54.96569965207551], 15)
+let myMap = L.map('myMap').setView([-34.842001738580954, -55.109542666174136], 12)
 
 // tile and copyright declaration
 
@@ -84,17 +84,28 @@ image.addEventListener('load', function(e){
 })
 
 form.addEventListener('submit', (e) =>{
-    const fomrdata = new FormData(form)
-    const name = fomrdata.get('name')
-    fomrdata.delete('image')
-    fomrdata.set('lat', latLong.lat)
-    fomrdata.set('lon', latLong.lng)
-    var file
+    const fomrdata = new FormData(form);
+    const name = fomrdata.get('name');
+    fomrdata.delete('image');
+    fomrdata.set('lat', latLong.lat);
+    fomrdata.set('lon', latLong.lng);
+    var file;
     // convert areatext to hmtl text multiline
-    var pop = fomrdata.get('popUpinfo')
-    pop = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    fomrdata.delete('popUpinfo')
-    fomrdata.set('popUpinfo', pop)
+    var pop = fomrdata.get('popUpinfo');
+    str = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    fomrdata.delete('popUpinfo');
+    // blackwords when **
+    var count = countOccurences(str,"*")/2; 
+
+    for(var i=0; i < count; i++){
+        firstas = str.indexOf("*") + 1;
+        nextas = str.indexOf("*", firstas + 1);
+        substr = str.substring(firstas, nextas);
+        str = str.replace(`*${substr}*`, `<b>${substr}</b>`);
+    }
+    fomrdata.set('popUpinfo', str);
+    
+
     
     canvas = cropper.getCroppedCanvas({
         height: 300,
@@ -271,7 +282,7 @@ function onClick(e){
 // find marker in database
 function getmarkers(info){
     var tipo = info.sourceTarget._shadow.src;
-    tipo = tipo.replace("http://54.207.82.40/frames/", '');
+    tipo = tipo.replace("http://localhost:3000/frames/", '');
     tipo = tipo.replace(".png", '');
     tipo = tipo.replace(/%20/g, " ");
     var lat = info.latlng.lat;
@@ -312,9 +323,18 @@ function modifyMarker(){
         var file;
         // convert areatext to hmtl text multiline
         var pop = formdata.get('popUpinfo');
-        pop = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
+        str = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
         formdata.delete('popUpinfo');
-        formdata.set('popUpinfo', pop);
+        // blackwords when **
+        var count = countOccurences(str,"*")/2; 
+
+        for(var i=0; i < count; i++){
+            firstas = str.indexOf("*") + 1;
+            nextas = str.indexOf("*", firstas + 1);
+            substr = str.substring(firstas, nextas);
+            str = str.replace(`*${substr}*`, `<b>${substr}</b>`);
+        }
+        formdata.set('popUpinfo', str);
         
         canvas = cropper.getCroppedCanvas({
             height: 300,
@@ -336,8 +356,17 @@ function modifyMarker(){
         var name = edifForm.name.value;
         // convert areatext to hmtl text multiline
         var pop = edifForm.popUpinfo.value;
-        pop = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
-        var popUpinfo = pop;
+        str = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
+        // blackwords when **
+        var count = countOccurences(str,"*")/2; 
+
+        for(var i=0; i < count; i++){
+            firstas = str.indexOf("*") + 1;
+            nextas = str.indexOf("*", firstas + 1);
+            substr = str.substring(firstas, nextas);
+            str = str.replace(`*${substr}*`, `<b>${substr}</b>`);
+        }
+        var popUpinfo = str;
 
         var data = {id: `${id}`, name: `${name}`,popUpinfo: `${popUpinfo}`}
         fetch('/modify',{
@@ -382,6 +411,15 @@ function modifyButton(){
     nameEdit.value = markerRes[0].name;
     var pop = markerRes[0].popUpinfo;
     pop = pop.replace(/<br>/g, "\r\n");
+
+    // blackwords to **
+    var count = countOccurences(pop,"<b>"); 
+    
+    for(var i=0; i < count; i++){
+        substr = pop.substring(pop.indexOf("<b>") + 3, pop.indexOf("/b") - 1);
+        pop = pop.replace(`<b>${substr}</b>`, `*${substr}*`);
+    }
+    
     popEdit.value = pop;
     tipoEdit.innerHTML = markerRes[0].Tipo;
     switch (markerRes[0].Tipo){
@@ -409,3 +447,7 @@ myMap.addLayer(Beneficio);
 // funcion call of all markers
 
 getData();
+
+function countOccurences(string, word) {
+    return string.split(word).length - 1;
+ }
