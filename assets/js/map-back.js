@@ -282,7 +282,7 @@ function onClick(e){
 // find marker in database
 function getmarkers(info){
     var tipo = info.sourceTarget._shadow.src;
-    tipo = tipo.replace("http://localhost:3000/frames/", '');
+    tipo = tipo.replace("http://54.207.82.40/frames/", '');
     tipo = tipo.replace(".png", '');
     tipo = tipo.replace(/%20/g, " ");
     var lat = info.latlng.lat;
