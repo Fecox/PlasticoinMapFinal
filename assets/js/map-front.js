@@ -1,9 +1,10 @@
     // create the map atributtion 
     let myMap = L.map('myMap', {
-        center: [-34.9112377243155, -54.96569965207551],
-        zoom: 15,
+        center: [-34.842001738580954, -55.109542666174136],
+        zoom: 12
     })
 
+    
     // set the tile from library and corresponding copyright
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
