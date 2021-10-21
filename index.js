@@ -7,7 +7,7 @@ const multer = require('multer');
 const datastore = require('nedb');
 const path = require('path');
 const fs = require('fs');
-// const pm2 = require('pm2');
+const pm2 = require('pm2');
 const { promisify } = require('util');
 const unlinkAsync = promisify(fs.unlink);
 const app = express();
@@ -45,7 +45,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }));
 app.use(flash())
 app.use(session({
-    secret: 'supersecret',
+    secret: '$2b$10$Z7hodGVreEuRFLVX7CICy.x208aW14hTZB4zyuKlnaHhn9L6Yl8O.',
     resave: false,
     saveUninitialized: false
 }))
@@ -184,7 +184,6 @@ app.post('/delete', (req, res) =>{
         console.log("se removio: " + numRemoved);
     })
     unlinkAsync(path.resolve('./assets' + req.body[0].icon_url));
-    /*
     pm2.connect(function(err){
         if (err) {
             console.log(err)
@@ -195,7 +194,6 @@ app.post('/delete', (req, res) =>{
             pm2.disconnect();
         })
     })
-    */
 })
 
 // get
