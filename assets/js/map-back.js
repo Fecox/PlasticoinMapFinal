@@ -37,11 +37,14 @@ const popEdit = document.getElementById('popUp_edit');
 const tipoEdit = document.getElementById('tipo_edit');
 const colorEdit = document.getElementById('edit__color');
 const edifForm = document.getElementById('edit_form');
+const modalImage = document.getElementById('modal_menu_i');
 const formString = "form"
 const bottomString = "edit__menu edit__button_move"
 var imgChange = false;
+var isOpen = false;
+var isTouched = false;
+var imgUp = false;
 var latLong
-var isOpen = false
 var markersData;
 var markerRes;
 
@@ -53,6 +56,9 @@ var cropper,reader,file,canvas;
 $("body").on("change", ".image", function(e){
 
     imagediv.classList.toggle("div__image_hide");
+    modalImage.style.visibility = "visible";
+    modalImage.style.opacity = "1";
+    imgUp = true;
 
     var files = e.target.files;
     var done = function(url){
@@ -125,6 +131,8 @@ form.addEventListener('submit', (e) =>{
 
 function closeCrop(){
     imagediv.classList.toggle("div__image_hide");
+    modalImage.style.visibility = "hidden";
+    modalImage.style.opacity = "0";
 }
 function bottomMenu(){
     var formHide = formAnm.classList.value;
@@ -155,11 +163,20 @@ myMap.on('dblclick', (e) =>{
     if(formHide === formString){
         var editHide = bottomM.classList.value;
         if (editHide === bottomString) {
+            isTouched = false;
             formAnm.classList.toggle("form__move");
-            buttonB.classList.toggle("edit__div_hide");
             bottomM.classList.toggle("edit__button_move");  
         }else{
-            formAnm.classList.toggle("form__move");
+            var buttonHide = buttonB.classList.value;
+            console.log(buttonHide);
+            if (buttonHide === "edit__div") {
+                isTouched = false;
+                buttonB.classList.toggle("edit__div_hide");
+                formAnm.classList.toggle("form__move");
+            }else{
+                formAnm.classList.toggle("form__move");
+            }
+            
         }
     }
 })
@@ -263,21 +280,35 @@ async function getBeneficio() {
 
 // onclick in marker
 function onClick(e){
-    var formHide = formAnm.classList.value;
-    if (!isOpen) {
-        if (formHide !== formString) {
-            tempLayer.clearLayers()
-            formAnm.classList.toggle("form__move")
-            buttonB.classList.toggle("edit__div_hide");    
-        }else{
-            buttonB.classList.toggle("edit__div_hide");
-        }
-        isOpen = true;
-        getmarkers(e);
+    if (imgUp) {
+        location.reload();
     }else{
-        getmarkers(e);
+        var formHide = formAnm.classList.value;
+        if (!isTouched) {
+            if (formHide !== formString) {
+                tempLayer.clearLayers()
+                formAnm.classList.toggle("form__move");
+                buttonB.classList.toggle("edit__div_hide");
+            }else{
+                buttonB.classList.toggle("edit__div_hide");
+            }
+            isTouched = true;
+            getmarkers(e);
+        }else{
+            if (isOpen) {
+                bottomM.classList.toggle("edit__button_move");
+                buttonB.classList.toggle("edit__div_hide");
+                isOpen = false;
+                getmarkers(e);    
+            }
+            else{
+                getmarkers(e);    
+            }
+        }
     }
 }
+
+
 
 // find marker in database
 function getmarkers(info){
@@ -398,6 +429,7 @@ function deleteMarker(){
 }
 // modify marker
 function modifyButton(){
+    isOpen = true;
     var formHide = formAnm.classList.value;
     if (formHide !== formString) {
         tempLayer.clearLayers()
@@ -422,20 +454,63 @@ function modifyButton(){
     
     popEdit.value = pop;
     tipoEdit.innerHTML = markerRes[0].Tipo;
+    var color = colorEdit.classList.value;
+    console.log(color);
     switch (markerRes[0].Tipo){
         case 'Empresas Responsables':
-            colorEdit.classList.toggle("checkmark__beneficio");
+            if (color === "checkmark") {
+                colorEdit.classList.toggle("checkmark__beneficio");    
+            }
+            if (color === "checkmark checkmark__empresa") {
+                colorEdit.classList.toggle("checkmark__empresa");
+                colorEdit.classList.toggle("checkmark__beneficio");    
+            }
+            if(color === "checkmark checkmark__acopio"){
+                colorEdit.classList.toggle("checkmark__acopio");   
+                colorEdit.classList.toggle("checkmark__beneficio");
+            }
             break;
         case 'Empresa Adheridas':
-            colorEdit.classList.toggle("checkmark__empresa");
+            if (color === "checkmark") {
+                colorEdit.classList.toggle("checkmark__empresa");    
+            }
+            if (color === "checkmark checkmark__beneficio") {
+                colorEdit.classList.toggle("checkmark__beneficio");
+                colorEdit.classList.toggle("checkmark__empresa");    
+            }
+            if (color === "checkmark checkmark__acopio") {
+                colorEdit.classList.toggle("checkmark__acopio");   
+                colorEdit.classList.toggle("checkmark__empresa");
+            }
             break;
         case 'Centros de Acopio':
-            colorEdit.classList.toggle("checkmark__acopio");
+            if (color === "checkmark") {
+                colorEdit.classList.toggle("checkmark__acopio");   
+            }
+            if (color === "checkmark checkmark__beneficio") {
+                colorEdit.classList.toggle("checkmark__beneficio");
+                colorEdit.classList.toggle("checkmark__acopio");   
+            }
+            if (color === "checkmark checkmark__empresa") {
+                colorEdit.classList.toggle("checkmark__empresa");
+                colorEdit.classList.toggle("checkmark__acopio"); 
+            }
             break;
         default:
             console.log("algo salio mal");
     }
 }
+// cancel modify button
+function cancelBtn(){
+    if (imgUp) {
+        location.reload();
+    }else{
+        buttonB.classList.toggle("edit__div_hide");
+        bottomM.classList.toggle("edit__button_move");
+        isOpen = false;
+    }
+}
+
 
 // poot the grouplayer in the map
 
