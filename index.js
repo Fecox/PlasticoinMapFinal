@@ -7,7 +7,7 @@ const multer = require('multer');
 const datastore = require('nedb');
 const path = require('path');
 const fs = require('fs');
-const pm2 = require('pm2');
+// const pm2 = require('pm2');
 const { promisify } = require('util');
 const unlinkAsync = promisify(fs.unlink);
 const app = express();
@@ -184,6 +184,7 @@ app.post('/delete', (req, res) =>{
         console.log("se removio: " + numRemoved);
     })
     unlinkAsync(path.resolve('./assets' + req.body[0].icon_url));
+    /*
     pm2.connect(function(err){
         if (err) {
             console.log(err)
@@ -194,6 +195,7 @@ app.post('/delete', (req, res) =>{
             pm2.disconnect();
         })
     })
+    */
 })
 
 // get
@@ -223,6 +225,16 @@ app.get('/acopio', (req, res) =>{
             res.send(data)
         }else {
             console.log(err)
+        }
+    })
+})
+
+app.get('/mapDB', (req, res) =>{
+    mapDB.find({}, (err, data) =>{
+        if (!err) {
+            res.send(data);
+        }else{
+            console.log(err);
         }
     })
 })
