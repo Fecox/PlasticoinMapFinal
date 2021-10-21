@@ -15,11 +15,16 @@
 <body>
     
     <div id="myMap" class="myMap"></div>
-    <div class="div__image div__image_hide" id="div__image">
-        <div class="imagediv">
-            <img id="image" src="" alt="">
+    <div class="modal__menu_image modal__menu_image_anim" id="modal_menu_i">
+        <div class="div__image div__image_hide" id="div__image">
+            <div class="imagediv">
+                <img id="image" src="" alt="">
+            </div>
+            <button class="cut__button" onclick="closeCrop()">Hecho</button>
         </div>
-        <button class="cut__button" onclick="closeCrop()">Hecho</button>
+        <div class="preview location">
+                
+        </div>
     </div>
     <div id="div_form" class="form">
         <div class="inter__form">
@@ -114,11 +119,11 @@
                     <label for="info">Descripcion de Popup:</label>
                     <textarea name="popUpinfo" id="popUp_edit" cols="44" rows="10"></textarea>
                 </div>
-                <div class="edit__preview"></div> 
+                <div class="preview location__edit"></div> 
             </form>
             <div style="display: flex; float: right;">
                 <button class="edit__button" style="margin: 5px 15px;" onclick="modifyMarker()">Editar</button>
-                <button class="edit__button" style="margin: 5px 15px;" onclick="modifyButton()">Cancelar</button>
+                <button class="edit__button" style="margin: 5px 15px;" onclick="cancelBtn()">Cancelar</button>
             </div>
         </div> 
     </div>
