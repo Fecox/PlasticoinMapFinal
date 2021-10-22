@@ -1,7 +1,18 @@
 // set up of map
 
+let myMap = L.map('myMap')
 
-let myMap = L.map('myMap').setView([-34.842001738580954, -55.109542666174136], 12)
+// set up point
+function myFunction(x) {
+    if (x.matches) { // If media query matches
+        myMap = myMap.setView([-34.76790908850057, -55.122879906552505], 10);
+    } else {
+        myMap = myMap.setView([-34.842001738580954, -55.109542666174136], 12);
+    }
+}
+
+var x = window.matchMedia("(max-width: 1024px)")
+myFunction(x) // Call listener function at run time
 
 // tile and copyright declaration
 
