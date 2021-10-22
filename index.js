@@ -167,6 +167,9 @@ app.post('/modify', (req, res) =>{
 app.post('/modifyImage', upload.single('image'), (req, res) =>{
     const params = req.body;
     params.icon_url = `/img/${req.file.originalname}`;
+    if (params.icon_url !== params.oldPath) {
+        unlinkAsync(path.resolve('./assets' + params.oldPath));  
+    }
     mapDB.update({ _id: params.id }, { $set: { name: params.name } }, (err, numReplaced) =>{
         console.log("se modifico nombre de: " + numReplaced);
     })
@@ -176,7 +179,6 @@ app.post('/modifyImage', upload.single('image'), (req, res) =>{
     mapDB.update({ _id: params.id }, { $set: { icon_url: params.icon_url}}, (err, numReplaced) =>{
         console.log("se modifico icon url de: " + numReplaced);
     })
-    unlinkAsync(path.resolve('./assets' + params.oldPath));
 })
 
 app.post('/delete', (req, res) =>{
