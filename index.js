@@ -36,7 +36,7 @@ const upload = multer({ storage: storage })
 const initializePassport = require('./passport-config');
 const { send } = require('process');
 getUsers()
-const PORT = 8080;
+const PORT = 3000;
 
 
 // settings
