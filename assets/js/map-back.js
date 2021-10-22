@@ -84,7 +84,7 @@ image.addEventListener('load', function(e){
     imgChange = true;
     cropper = new Cropper(image, {
         aspectRatio: 1,
-        viewMode: 2,
+        viewMode: 3,
         preview: '.preview'
     })
 })
