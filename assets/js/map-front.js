@@ -1,9 +1,18 @@
-    // create the map atributtion 
-    let myMap = L.map('myMap', {
-        center: [-34.842001738580954, -55.109542666174136],
-        zoom: 12
-    })
+// set up of map
 
+let myMap = L.map('myMap')
+
+// set up point
+function myFunction(x) {
+    if (x.matches) { // If media query matches
+        myMap = myMap.setView([-34.76790908850057, -55.122879906552505], 10);
+    } else {
+        myMap = myMap.setView([-34.842001738580954, -55.109542666174136], 12);
+    }
+}
+
+var x = window.matchMedia("(max-width: 1024px)")
+myFunction(x) // Call listener function at run time
     
     // set the tile from library and corresponding copyright
 
