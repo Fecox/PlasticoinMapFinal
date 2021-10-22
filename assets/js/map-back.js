@@ -313,7 +313,7 @@ function onClick(e){
 // find marker in database
 function getmarkers(info){
     var tipo = info.sourceTarget._shadow.src;
-    tipo = tipo.replace("http://www.map.plasticoin.com.uy/frames/", '');
+    tipo = tipo.replace("https://www.map.plasticoin.com.uy/frames/", '');
     tipo = tipo.replace(".png", '');
     tipo = tipo.replace(/%20/g, " ");
     var lat = info.latlng.lat;
