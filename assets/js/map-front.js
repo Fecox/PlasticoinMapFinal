@@ -140,7 +140,7 @@
                     for(o = 0; o < data.length; o++){
                         markers = Empresa.getLayers();
                         var name = markers[o]._icon.src;
-                        name = name.replace("http://www.map.plasticoin.com.uy/img/", '');
+                        name = name.replace("https://www.map.plasticoin.com.uy/img/", '');
                         name = name.replace(".png", '');
                         name = name.replace(/%20/g, " ");
                         if (name == data[i].name) {
@@ -152,7 +152,7 @@
                     for(o = 0; o < data.length; o++){
                         markers = Acopio.getLayers();
                         var name = markers[o]._icon.src;
-                        name = name.replace("http://www.map.plasticoin.com.uy/img/", '');
+                        name = name.replace("https://www.map.plasticoin.com.uy/img/", '');
                         name = name.replace(".png", '');
                         name = name.replace(/%20/g, " ");
                         if (name == data[i].name) {
@@ -164,7 +164,7 @@
                     for(o = 0; o < data.length; o++){
                         markers = Beneficio.getLayers();
                         var name = markers[o]._icon.src;
-                        name = name.replace("http://www.map.plasticoin.com.uy/img/", '');
+                        name = name.replace("https://www.map.plasticoin.com.uy/img/", '');
                         name = name.replace(".png", '');
                         name = name.replace(/%20/g, " ");
                         if (name == data[i].name) {
