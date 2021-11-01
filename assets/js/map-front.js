@@ -13,7 +13,7 @@ function myFunction(x) {
 
 var x = window.matchMedia("(max-width: 1024px)")
 myFunction(x) // Call listener function at run time
-    
+
     // set the tile from library and corresponding copyright
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -46,7 +46,7 @@ myFunction(x) // Call listener function at run time
         const data = await res.json();
 
         for (var i=0;i<data.length;i++){
-            
+
             let iconMarker = L.icon({
                 iconUrl: data[i].icon_url,
                 shadowUrl: '/frames/Empresa Adheridas.png',
@@ -56,7 +56,7 @@ myFunction(x) // Call listener function at run time
                 iconSize: [40, 40],
                 iconAnchor: [20, 20]
             })
-        
+
         var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker}).on('click', clickzoom)
         marker.bindPopup(`${data[i].popUpinfo}`);
         Empresa.addLayer(marker);
@@ -82,7 +82,7 @@ myFunction(x) // Call listener function at run time
                 iconSize: [40, 40],
                 iconAnchor: [20, 20]
             })
-        
+
         var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker}).on('click', clickzoom)
         marker.bindPopup(`${data[i].popUpinfo}`);
         Acopio.addLayer(marker);
@@ -109,7 +109,7 @@ myFunction(x) // Call listener function at run time
                 iconSize: [40, 40],
                 iconAnchor: [20, 20]
             })
-        
+
         var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker}).on('click', clickzoom)
         marker.bindPopup(`${data[i].popUpinfo}`)
         Beneficio.addLayer(marker);
@@ -149,8 +149,9 @@ myFunction(x) // Call listener function at run time
                     for(o = 0; o < data.length; o++){
                         markers = Empresa.getLayers();
                         var name = markers[o]._icon.src;
-                        name = name.replace("https://www.map.plasticoin.com.uy/img/", '');
-                        name = name.replace(".png", '');
+                        name = name.replace("https://www.map.plasticoin.com.uy/img/", "");
+                        name = name.replace("https://map.plasticoin.com.uy/img/", "");
+                        name = name.replace(".png", "");
                         name = name.replace(/%20/g, " ");
                         if (name == data[i].name) {
                             markers[o].openPopup();
@@ -161,8 +162,9 @@ myFunction(x) // Call listener function at run time
                     for(o = 0; o < data.length; o++){
                         markers = Acopio.getLayers();
                         var name = markers[o]._icon.src;
-                        name = name.replace("https://www.map.plasticoin.com.uy/img/", '');
-                        name = name.replace(".png", '');
+                        name = name.replace("https://www.map.plasticoin.com.uy/img/", "");
+                        name = name.replace("https://map.plasticoin.com.uy/img/", "");
+                        name = name.replace(".png", "");
                         name = name.replace(/%20/g, " ");
                         if (name == data[i].name) {
                             markers[o].openPopup();
@@ -173,8 +175,9 @@ myFunction(x) // Call listener function at run time
                     for(o = 0; o < data.length; o++){
                         markers = Beneficio.getLayers();
                         var name = markers[o]._icon.src;
-                        name = name.replace("https://www.map.plasticoin.com.uy/img/", '');
-                        name = name.replace(".png", '');
+                        name = name.replace("https://www.map.plasticoin.com.uy/img/", "");
+                        name = name.replace("https://map.plasticoin.com.uy/img/", "");
+                        name = name.replace(".png", "");
                         name = name.replace(/%20/g, " ");
                         if (name == data[i].name) {
                             markers[o].openPopup();
@@ -184,8 +187,8 @@ myFunction(x) // Call listener function at run time
             }
         }
     }
-    
-    
+
+
 
 
     // create li and a
@@ -212,7 +215,7 @@ myFunction(x) // Call listener function at run time
     a.onclick = function (){
         console.log("fuicnikon");
     }
-    
+
 
 
     /*
