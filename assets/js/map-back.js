@@ -17,8 +17,8 @@ myFunction(x) // Call listener function at run time
 // tile and copyright declaration
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(myMap);
 
 // set up variables for double click event
@@ -112,7 +112,7 @@ form.addEventListener('submit', (e) =>{
     str = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
     fomrdata.delete('popUpinfo');
     // blackwords when **
-    var count = countOccurences(str,"*")/2; 
+    var count = countOccurences(str,"*")/2;
 
     for(var i=0; i < count; i++){
         firstas = str.indexOf("*") + 1;
@@ -121,16 +121,16 @@ form.addEventListener('submit', (e) =>{
         str = str.replace(`*${substr}*`, `<b>${substr}</b>`);
     }
     fomrdata.set('popUpinfo', str);
-    
 
-    
+
+
     canvas = cropper.getCroppedCanvas({
         height: 300,
         width: 300
     }).toBlob(async function(blob){
         file = new File([blob], `${name}.png`, {type: blob.type});
         fomrdata.set('image', file)
-        
+
         await fetch('/api', {
             method: 'POST',
             body: fomrdata
@@ -151,10 +151,10 @@ function bottomMenu(){
         tempLayer.clearLayers()
         formAnm.classList.toggle("form__move")
         buttonB.classList.toggle("edit__div_hide");
-        bottomM.classList.toggle("edit__button_move");   
+        bottomM.classList.toggle("edit__button_move");
     }else{
         buttonB.classList.toggle("edit__div_hide");
-        bottomM.classList.toggle("edit__button_move");   
+        bottomM.classList.toggle("edit__button_move");
     }
 }
 
@@ -176,7 +176,7 @@ myMap.on('dblclick', (e) =>{
         if (editHide === bottomString) {
             isTouched = false;
             formAnm.classList.toggle("form__move");
-            bottomM.classList.toggle("edit__button_move");  
+            bottomM.classList.toggle("edit__button_move");
         }else{
             var buttonHide = buttonB.classList.value;
             console.log(buttonHide);
@@ -187,7 +187,7 @@ myMap.on('dblclick', (e) =>{
             }else{
                 formAnm.classList.toggle("form__move");
             }
-            
+
         }
     }
 })
@@ -214,7 +214,7 @@ async function getEmpresa() {
 
 
     for (var i=0;i<data.length;i++){
-        
+
         let iconMarker = L.icon({
             iconUrl: data[i].icon_url,
             shadowUrl: '/frames/Empresa Adheridas.png',
@@ -224,10 +224,10 @@ async function getEmpresa() {
             iconSize: [40, 40],
             iconAnchor: [20, 20]
         })
-    
+
        var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
        marker.on('click', onClick);
-       marker.bindPopup(`${data[i].popUpinfo}`);       
+       marker.bindPopup(`${data[i].popUpinfo}`);
        Empresa.addLayer(marker);
     }
     return false;
@@ -241,7 +241,7 @@ async function getAcopio() {
 
 
     for (var i=0;i<data.length;i++){
-        
+
         let iconMarker = L.icon({
             iconUrl: data[i].icon_url,
             shadowUrl: '/frames/Centros de Acopio.png',
@@ -251,7 +251,7 @@ async function getAcopio() {
             iconSize: [40, 40],
             iconAnchor: [20, 20]
         })
-    
+
        var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
        marker.on('click', onClick);
        marker.bindPopup(`${data[i].popUpinfo}`);
@@ -269,7 +269,7 @@ async function getBeneficio() {
 
 
     for (var i=0;i<data.length;i++){
-        
+
         let iconMarker = L.icon({
             iconUrl: data[i].icon_url,
             shadowUrl: '/frames/Empresas Responsables.png',
@@ -279,7 +279,7 @@ async function getBeneficio() {
             iconSize: [40, 40],
             iconAnchor: [20, 20]
         })
-    
+
        var marker = L.marker([data[i].lat, data[i].lon,], { icon: iconMarker})
        marker.on('click', onClick);
        marker.bindPopup(`${data[i].popUpinfo}`);
@@ -310,10 +310,10 @@ function onClick(e){
                 bottomM.classList.toggle("edit__button_move");
                 buttonB.classList.toggle("edit__div_hide");
                 isOpen = false;
-                getmarkers(e);    
+                getmarkers(e);
             }
             else{
-                getmarkers(e);    
+                getmarkers(e);
             }
         }
     }
@@ -324,14 +324,15 @@ function onClick(e){
 // find marker in database
 function getmarkers(info){
     var tipo = info.sourceTarget._shadow.src;
-    tipo = tipo.replace("https://www.map.plasticoin.com.uy/frames/", '');
-    tipo = tipo.replace(".png", '');
+    tipo = tipo.replace("https://www.map.plasticoin.com.uy/frames/", "");
+    tipo = tipo.replace("https://map.plasticoin.com.uy/frames/", "");
+    tipo = tipo.replace(".png", "");
     tipo = tipo.replace(/%20/g, " ");
     var lat = info.latlng.lat;
     var lon = info.latlng.lng;
     var data = {lat: `${lat}`, lon: `${lon}`, tipo: `${tipo}`}
-    
-    
+
+
     fetch('/markers', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -368,7 +369,7 @@ function modifyMarker(){
         str = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
         formdata.delete('popUpinfo');
         // blackwords when **
-        var count = countOccurences(str,"*")/2; 
+        var count = countOccurences(str,"*")/2;
 
         for(var i=0; i < count; i++){
             firstas = str.indexOf("*") + 1;
@@ -377,14 +378,14 @@ function modifyMarker(){
             str = str.replace(`*${substr}*`, `<b>${substr}</b>`);
         }
         formdata.set('popUpinfo', str);
-        
+
         canvas = cropper.getCroppedCanvas({
             height: 300,
             width: 300
         }).toBlob(async function(blob){
             file = new File([blob], `${name}.png`, {type: blob.type});
             formdata.set('image', file)
-            
+
             await fetch('/modifyImage', {
                 method: 'POST',
                 body: formdata
@@ -400,7 +401,7 @@ function modifyMarker(){
         var pop = edifForm.popUpinfo.value;
         str = pop.replace(/(?:\r\n|\r|\n)/g, '<br>');
         // blackwords when **
-        var count = countOccurences(str,"*")/2; 
+        var count = countOccurences(str,"*")/2;
 
         for(var i=0; i < count; i++){
             firstas = str.indexOf("*") + 1;
@@ -415,7 +416,7 @@ function modifyMarker(){
             method: 'POST',
             body: JSON.stringify(data),
             headers:{
-                'Content-Type': 'application/json'    
+                'Content-Type': 'application/json'
             }
         }).then(setTimeout(function(){
             location.reload()
@@ -423,8 +424,8 @@ function modifyMarker(){
     }
 }
 
-// delete marker 
-function deleteMarker(){ 
+// delete marker
+function deleteMarker(){
 
     fetch('/delete', {
         method: 'POST',
@@ -446,23 +447,23 @@ function modifyButton(){
         tempLayer.clearLayers()
         formAnm.classList.toggle("form__move")
         buttonB.classList.toggle("edit__div_hide");
-        bottomM.classList.toggle("edit__button_move");   
+        bottomM.classList.toggle("edit__button_move");
     }else{
         buttonB.classList.toggle("edit__div_hide");
-        bottomM.classList.toggle("edit__button_move");   
+        bottomM.classList.toggle("edit__button_move");
     }
     nameEdit.value = markerRes[0].name;
     var pop = markerRes[0].popUpinfo;
     pop = pop.replace(/<br>/g, "\r\n");
 
     // blackwords to **
-    var count = countOccurences(pop,"<b>"); 
-    
+    var count = countOccurences(pop,"<b>");
+
     for(var i=0; i < count; i++){
         substr = pop.substring(pop.indexOf("<b>") + 3, pop.indexOf("/b") - 1);
         pop = pop.replace(`<b>${substr}</b>`, `*${substr}*`);
     }
-    
+
     popEdit.value = pop;
     tipoEdit.innerHTML = markerRes[0].Tipo;
     var color = colorEdit.classList.value;
@@ -470,41 +471,41 @@ function modifyButton(){
     switch (markerRes[0].Tipo){
         case 'Empresas Responsables':
             if (color === "checkmark") {
-                colorEdit.classList.toggle("checkmark__beneficio");    
+                colorEdit.classList.toggle("checkmark__beneficio");
             }
             if (color === "checkmark checkmark__empresa") {
                 colorEdit.classList.toggle("checkmark__empresa");
-                colorEdit.classList.toggle("checkmark__beneficio");    
+                colorEdit.classList.toggle("checkmark__beneficio");
             }
             if(color === "checkmark checkmark__acopio"){
-                colorEdit.classList.toggle("checkmark__acopio");   
+                colorEdit.classList.toggle("checkmark__acopio");
                 colorEdit.classList.toggle("checkmark__beneficio");
             }
             break;
         case 'Empresa Adheridas':
             if (color === "checkmark") {
-                colorEdit.classList.toggle("checkmark__empresa");    
+                colorEdit.classList.toggle("checkmark__empresa");
             }
             if (color === "checkmark checkmark__beneficio") {
                 colorEdit.classList.toggle("checkmark__beneficio");
-                colorEdit.classList.toggle("checkmark__empresa");    
+                colorEdit.classList.toggle("checkmark__empresa");
             }
             if (color === "checkmark checkmark__acopio") {
-                colorEdit.classList.toggle("checkmark__acopio");   
+                colorEdit.classList.toggle("checkmark__acopio");
                 colorEdit.classList.toggle("checkmark__empresa");
             }
             break;
         case 'Centros de Acopio':
             if (color === "checkmark") {
-                colorEdit.classList.toggle("checkmark__acopio");   
+                colorEdit.classList.toggle("checkmark__acopio");
             }
             if (color === "checkmark checkmark__beneficio") {
                 colorEdit.classList.toggle("checkmark__beneficio");
-                colorEdit.classList.toggle("checkmark__acopio");   
+                colorEdit.classList.toggle("checkmark__acopio");
             }
             if (color === "checkmark checkmark__empresa") {
                 colorEdit.classList.toggle("checkmark__empresa");
-                colorEdit.classList.toggle("checkmark__acopio"); 
+                colorEdit.classList.toggle("checkmark__acopio");
             }
             break;
         default:
